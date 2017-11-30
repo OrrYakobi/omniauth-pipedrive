@@ -5,14 +5,14 @@ This is the OmniAuth strategy for authenticating to [Pipedrive](https://www.pipe
 ## Installation
 
 ```ruby
-gem 'omniauth-pipedrive', git: "https://github.com/SupportBee/omniauth-pipedrive"
+gem 'omniauth-pipedrive', git: "https://github.com/OrrYakobi/omniauth-pipedrive"
 ```
 
 ## Basic Usage
 
 ```ruby
 use OmniAuth::Builder do
-  provider :pipedrive, ENV['client_id'], ENV['client_secret']
+  provider :pipedrive, ENV['client_id'], ENV['client_secret'], :callback_url => "YOUR CALLBACK URL"
 end
 ```
 
