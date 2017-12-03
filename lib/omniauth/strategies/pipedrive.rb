@@ -3,7 +3,6 @@ require 'omniauth-oauth2'
 module OmniAuth
   module Strategies
     class Pipedrive < OmniAuth::Strategies::OAuth2
-      option :redirect_uri, nil
       option :client_options, {
         site: 'https://api-proxy.pipedrive.com',
         authorize_url: 'https://oauth.pipedrive.com/oauth/authorize',
@@ -11,7 +10,7 @@ module OmniAuth
       }
 
       def request_phase
-        redirect client.auth_code.authorize_url({:redirect_uri => options.redirect_uri}.merge(authorize_params))
+        super
       end
 
       def callback_phase
@@ -31,6 +30,10 @@ module OmniAuth
         {
           raw_info: raw_info
         }
+      end
+
+      def callback_url
+        full_host + script_name + callback_path
       end
 
       def raw_info
